@@ -6,6 +6,7 @@ export const StyledRoversImgs = styled.div`
 
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 
   .conteiner {
     width: 100%;
@@ -14,8 +15,7 @@ export const StyledRoversImgs = styled.div`
     display: flex;
     justify-content: space-between;
 
-    position: absolute;
-    bottom: 0;
+    overflow-x: hidden;
   }
 
   .moveAside {
@@ -25,21 +25,29 @@ export const StyledRoversImgs = styled.div`
     display: flex;
   }
   .cardImg {
-    width: 65%;
+    width: 70%;
     height: 100%;
 
     display: flex;
+    flex-direction: column;
+
+    gap: 40px;
 
     @media (min-width: 1100px) {
       width: 70%;
     }
 
-    > div {
+    .cardImgeNasa {
       height: 82.5%;
       width: 100%;
+
       img {
         width: 94%;
       }
     }
+  }
+  .padd {
+    width: 100%;
+    height: 15%;
   }
 `;
