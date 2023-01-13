@@ -1,5 +1,10 @@
+import { Header } from "../../Components/Header";
 import { StyledRoversImgs } from "./styled";
 
 export const RoversImgs = () => {
-  return <StyledRoversImgs></StyledRoversImgs>;
+  return (
+    <StyledRoversImgs>
+      <Header />
+    </StyledRoversImgs>
+  );
 };
