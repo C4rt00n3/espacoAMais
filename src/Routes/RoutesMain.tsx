@@ -1,12 +1,27 @@
 import { Route, Routes } from "react-router-dom";
+import { ProviderContextRover } from "../Context/ContextRovers/ContextRover";
 import { Planetary } from "../Pages/Planetary";
 import { RoversImgs } from "../Pages/RoversImgs";
 
 export const RoutesMain = () => {
   return (
     <Routes>
-      <Route path="rovers" element={<RoversImgs />} />
-      <Route path="*" element={<RoversImgs />} />
+      <Route
+        path="rovers"
+        element={
+          <ProviderContextRover>
+            <RoversImgs />
+          </ProviderContextRover>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <ProviderContextRover>
+            <RoversImgs />
+          </ProviderContextRover>
+        }
+      />
       <Route path="planetary" element={<Planetary />} />
     </Routes>
   );

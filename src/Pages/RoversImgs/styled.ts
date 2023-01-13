@@ -4,12 +4,18 @@ export const StyledRoversImgs = styled.div`
   width: 100%;
   height: 100%;
 
+  display: flex;
+  justify-content: space-between;
+
   .conteiner {
     width: 100%;
-    height: 100%;
+    height: 85%;
 
     display: flex;
     justify-content: space-between;
+
+    position: absolute;
+    bottom: 0;
   }
 
   .moveAside {
@@ -17,15 +23,16 @@ export const StyledRoversImgs = styled.div`
     height: 100%;
 
     display: flex;
-    align-items: flex-end;
   }
   .cardImg {
-    width: 70%;
+    width: 65%;
     height: 100%;
 
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+
+    @media (min-width: 1100px) {
+      width: 70%;
+    }
 
     > div {
       height: 82.5%;

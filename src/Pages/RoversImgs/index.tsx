@@ -5,7 +5,7 @@ import nasa from "../../Assets/Imgs/ImagemNasa.svg";
 
 export const RoversImgs = () => {
   return (
-    <StyledRoversImgs>
+    <StyledRoversImgs className="indetificado">
       <Header />
 
       <div className="conteiner">
