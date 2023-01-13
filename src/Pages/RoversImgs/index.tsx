@@ -5,6 +5,8 @@ export const RoversImgs = () => {
   return (
     <StyledRoversImgs>
       <Header />
+
+      <div className="conteiner"></div>
     </StyledRoversImgs>
   );
 };
