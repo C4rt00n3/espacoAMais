@@ -6,10 +6,11 @@ export const StyledRoversImgs = styled.div`
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-direction: column;
 
   .conteiner {
-    width: 100%;
+    width: 90%;
     height: 85%;
 
     display: flex;
@@ -25,7 +26,7 @@ export const StyledRoversImgs = styled.div`
     display: flex;
   }
   .cardImg {
-    width: 70%;
+    width: 80%;
     height: 100%;
 
     display: flex;
@@ -34,16 +35,13 @@ export const StyledRoversImgs = styled.div`
     gap: 40px;
 
     @media (min-width: 1100px) {
-      width: 70%;
+      width: 80%;
     }
-
-    .cardImgeNasa {
-      height: 82.5%;
+  }
+  .cardImageNasa {
+    width: 100%;
+    img {
       width: 100%;
-
-      img {
-        width: 94%;
-      }
     }
   }
   .padd {

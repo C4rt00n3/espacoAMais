@@ -6,7 +6,13 @@ export const StyleGlobal = createGlobalStyle`
         width: 100vw;
         height: 100vh;
 
-        font-family: 'Jaldi', sans-serif;;
+        font-family: 'Jaldi', sans-serif;
+
+        scrollbar-width: thin;          
+        scrollbar-color: blue orange;   
+    
+
+
 
         #root{
             width: 100%;
@@ -16,6 +22,24 @@ export const StyleGlobal = createGlobalStyle`
             width: 100%;
             height: 100%;
         }
+
+        * {
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #EBE9E9;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--Grey100);
+  border-radius: 20px;
+}
     }
 
 

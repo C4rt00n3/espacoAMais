@@ -21,6 +21,7 @@ export const StyledAsside = styled.aside`
 
   position: fixed;
   bottom: 0;
+  left: 0;
   button {
     width: 30px;
     height: 30px;

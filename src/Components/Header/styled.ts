@@ -12,6 +12,8 @@ export const StyledHeader = styled.header`
   background-color: var(--WitheFocus);
 
   position: fixed;
+
+  left: 0;
   z-index: 2;
   div {
     width: 90%;
