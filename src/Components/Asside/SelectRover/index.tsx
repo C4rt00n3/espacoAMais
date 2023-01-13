@@ -9,7 +9,11 @@ export const SelectRover = () => {
   return (
     <StyledSelectDiv className="divRover">
       <h4 className="subTitleSol">Rover</h4>
-      <select name="Rovers" id="">
+      <select
+        onChange={(e) => setRover(e.currentTarget?.value)}
+        name="Rovers"
+        id=""
+      >
         <option className="hidden" value={rover}>
           {rover}
         </option>
