@@ -15,6 +15,7 @@ export const StyleGlobal = createGlobalStyle`
 
         --Black: #000;
         --Withe: #fff;
+        --WitheFocus: #FBFBFB;
 
         --Grey100: #423F44;
         --Grey50: #2B2A2A;
