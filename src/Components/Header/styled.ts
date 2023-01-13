@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
   position: fixed;
 
   div {
-    width: 80%;
+    width: 90%;
 
     display: flex;
     justify-content: space-between;
