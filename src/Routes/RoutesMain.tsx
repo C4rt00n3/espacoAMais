@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { ProviderContextRover } from "../Context/ContextRovers/ContextRover";
+import { ProviderContextRover } from "../Context/ContexRovers";
 import { Planetary } from "../Pages/Planetary";
 import { RoversImgs } from "../Pages/RoversImgs";
 

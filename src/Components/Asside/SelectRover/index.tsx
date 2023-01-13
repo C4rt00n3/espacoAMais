@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContextRovers } from "../../../Context/ContextRovers/ContextRover";
+import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledSelectDiv } from "./styled";
 
 export const SelectRover = () => {
