@@ -9,7 +9,7 @@ export const StyledCamsList = styled.div`
   .carousel {
     width: 100%;
 
-    max-height: 100px;
+    max-height: 120px;
 
     overflow: hidden;
 
