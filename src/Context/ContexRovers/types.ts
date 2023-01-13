@@ -9,6 +9,8 @@ export interface iContextRover {
   page: number;
   setSun: React.Dispatch<React.SetStateAction<number>>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  modal: boolean;
 }
 
 export interface iAuthContext {

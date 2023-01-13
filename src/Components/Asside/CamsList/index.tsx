@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { unique } from "../../../App";
+import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledCamsList, StyledLi } from "./styled";
 
 export const CamsList = () => {
-  const rover: string = "Perseverance";
   const carousel = useRef<any>();
+  const { rover, modal } = useContext(ContextRovers);
 
   const [height, setHeight] = useState(0);
 
@@ -74,7 +75,7 @@ export const CamsList = () => {
       carousel.current?.scrollHeight - carousel.current?.offsetHeight + 50
     );
     console.log(carousel.current?.scrollHeight, carousel.current?.offsetHeight);
-  }, []);
+  }, [modal, rover]);
 
   const camsRover = camsRovers();
   return (

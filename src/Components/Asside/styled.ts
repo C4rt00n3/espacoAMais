@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
-export const StyledAsside = styled.aside`
-  width: 100%;
-  height: 85%;
+interface iStyledAside {
+  close?: boolean;
+  modal?: boolean;
+}
+
+export const StyledAsside = styled.aside<iStyledAside>`
+  width: ${({ close }) => (close ? "100%" : "0")};
+  height: ${({ close }) => (close ? "90%" : "0")};
 
   background-color: var(--WitheFocus);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -19,9 +24,11 @@ export const StyledAsside = styled.aside`
 
   overflow: hidden;
 
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: absolute;
+
+  @media (min-width: 900px) {
+    height: 85%;
+  }
   button {
     width: 30px;
     height: 30px;
@@ -41,5 +48,28 @@ export const StyledAsside = styled.aside`
   .subTitleSol {
     font-size: var(--Font24);
     font-weight: 600;
+  }
+`;
+
+export const StyledAsideDiv = styled.div<iStyledAside>`
+  display: ${({ modal }) => !modal && "none"};
+
+  .moveAside {
+    height: 100%;
+    width: min-content;
+    position: fixed;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    z-index: 2;
+
+    left: 0;
+    bottom: 0;
+  }
+
+  @media (min-width: 1200px) {
+    display: flex;
+    min-width: 320px;
   }
 `;

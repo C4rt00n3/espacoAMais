@@ -15,6 +15,7 @@ export const StyledHeader = styled.header`
 
   left: 0;
   z-index: 2;
+
   div {
     width: 90%;
 
@@ -23,9 +24,22 @@ export const StyledHeader = styled.header`
     align-items: center;
   }
 
+  button {
+    border: none;
+    background: none;
+
+    @media (min-width: 1200px) {
+      display: none;
+      .menu {
+        display: none;
+      }
+    }
+  }
   .menu {
     width: 30px;
     height: 30px;
+
+    color: var(--Black);
   }
 
   .logo {

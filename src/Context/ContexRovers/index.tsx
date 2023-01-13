@@ -16,6 +16,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   const [backup, setBackup] = useState([] as IPhotosItem[]);
   const [sun, setSun] = useState(0);
   const [page, setPage] = useState(0);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     async function Get() {
@@ -56,6 +57,8 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
         setSun,
         backup,
         photos,
+        modal,
+        setModal,
       }}
     >
       {children}
