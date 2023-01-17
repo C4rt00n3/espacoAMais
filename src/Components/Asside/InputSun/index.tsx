@@ -3,14 +3,18 @@ import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledInputSun } from "./styled";
 
 export const InputSun = () => {
-  const { setSun, setPhotos, sun } = useContext(ContextRovers);
+  const { setSun, setPhotos, sun, setPage, setCheckRequest } =
+    useContext(ContextRovers);
 
   function Sun(operator: "sub" | "sum") {
+    setCheckRequest(true);
     if (operator === "sub") {
       setPhotos([]);
+      setPage(0);
       setSun((e) => e - 1);
     } else {
       setPhotos([]);
+      setPage(0);
       setSun((e) => e + 1);
     }
   }

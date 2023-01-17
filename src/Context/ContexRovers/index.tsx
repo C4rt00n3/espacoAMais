@@ -19,10 +19,17 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   const [page, setPage] = useState(0);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [checkRequest, setCheckRequest] = useState(true);
 
   useEffect(() => {
+    const NewPhotos = photos;
     async function Get() {
+      if (!checkRequest) {
+        return;
+      }
+
       setLoading(true);
+
       try {
         const response: IRootObject = await api.get(
           `/rovers/${rover}/photos?`,
@@ -37,8 +44,13 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
         const { data } = response;
         const { photos } = data;
         if (photos.length) {
-          setPhotos((e) => [...e, ...photos]);
-          setBackup((e) => [...e, ...photos]);
+          setPhotos([...NewPhotos, ...photos]);
+          setBackup([...backup, ...photos]);
+        } else {
+          setCheckRequest(false);
+          setPhotos([]);
+          setBackup([]);
+          toast.info("não há fotos do dia solar " + sun);
         }
       } catch (error) {
         toast.error("Algo deu errado");
@@ -47,11 +59,15 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
       }
     }
     Get();
-  }, [rover, sun, page]);
+  }, [rover, sun, page, checkRequest]);
+
+  console.log(page);
 
   return (
     <ContextRovers.Provider
       value={{
+        checkRequest,
+        setCheckRequest,
         rover,
         setRover,
         sun,
@@ -71,5 +87,3 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     </ContextRovers.Provider>
   );
 };
-
-// Fiz a function que busca photos por dia solar

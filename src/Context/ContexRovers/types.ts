@@ -12,6 +12,8 @@ export interface iContextRover {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   modal: boolean;
   loading: boolean;
+  checkRequest: boolean;
+  setCheckRequest: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface iAuthContext {
