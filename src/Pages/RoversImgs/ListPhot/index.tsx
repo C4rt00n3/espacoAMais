@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledListPhotos } from "./styled";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const ListPhotos = () => {
   const { photos, rover } = useContext(ContextRovers);
@@ -14,6 +15,9 @@ export const ListPhotos = () => {
           </motion.li>
         ))}
       </motion.ul>
+      <div className="boxLoading">
+        <AiOutlineLoading3Quarters className="loading" />
+      </div>
     </StyledListPhotos>
   );
 };

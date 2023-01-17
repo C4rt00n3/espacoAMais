@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { api } from "../../service";
 import {
   iAuthContext,
@@ -38,7 +39,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
           setBackup((e) => [...e, ...photos]);
         }
       } catch (error) {
-        console.log(error);
+        toast.error("Algo deu errado");
       }
     }
     Get();
