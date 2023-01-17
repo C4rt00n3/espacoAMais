@@ -5,7 +5,7 @@ import nasa from "../../Assets/Imgs/ImagemNasa.svg";
 import nasa2 from "../../Assets/Imgs/ImagemNasa2.svg";
 import { motion } from "framer-motion";
 import { ListPhotos } from "./ListPhot";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ContextRovers } from "../../Context/ContexRovers";
 
 const Imagens = {

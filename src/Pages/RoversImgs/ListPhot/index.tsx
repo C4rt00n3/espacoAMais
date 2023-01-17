@@ -5,7 +5,7 @@ import { StyledListPhotos } from "./styled";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const ListPhotos = () => {
-  const { photos, rover } = useContext(ContextRovers);
+  const { photos, rover, loading } = useContext(ContextRovers);
   return (
     <StyledListPhotos>
       <motion.ul>
@@ -16,7 +16,7 @@ export const ListPhotos = () => {
         ))}
       </motion.ul>
       <div className="boxLoading">
-        <AiOutlineLoading3Quarters className="loading" />
+        {loading && <AiOutlineLoading3Quarters className="loading" />}
       </div>
     </StyledListPhotos>
   );

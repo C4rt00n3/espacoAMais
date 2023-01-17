@@ -18,9 +18,11 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   const [sun, setSun] = useState(0);
   const [page, setPage] = useState(0);
   const [modal, setModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function Get() {
+      setLoading(true);
       try {
         const response: IRootObject = await api.get(
           `/rovers/${rover}/photos?`,
@@ -40,6 +42,8 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
         }
       } catch (error) {
         toast.error("Algo deu errado");
+      } finally {
+        setLoading(false);
       }
     }
     Get();
@@ -60,6 +64,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
         photos,
         modal,
         setModal,
+        loading,
       }}
     >
       {children}
