@@ -1,11 +1,29 @@
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledListPhotos } from "./styled";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const ListPhotos = () => {
-  const { photos, rover, loading } = useContext(ContextRovers);
+  const { photos, rover, loading, setPage, checkRequest, sun } =
+    useContext(ContextRovers);
+
+  const observer = useRef<any>();
+
+  useEffect(() => {
+    const intersect = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting) && checkRequest) {
+        setTimeout(() => {
+          setPage((pageInsedeState) => pageInsedeState + 1);
+        }, 500);
+      }
+    });
+    if (observer.current) {
+      intersect.observe(observer.current);
+    }
+    return () => intersect.disconnect();
+  }, [setPage, loading]);
+
   return (
     <StyledListPhotos>
       <motion.ul>
@@ -15,7 +33,10 @@ export const ListPhotos = () => {
           </motion.li>
         ))}
       </motion.ul>
-      <div className="boxLoading">
+      <div ref={observer} className="boxLoading">
+        {!photos.length && !loading && (
+          <h2>{"Não há fotos no dia solar " + sun}</h2>
+        )}
         {loading && <AiOutlineLoading3Quarters className="loading" />}
       </div>
     </StyledListPhotos>
