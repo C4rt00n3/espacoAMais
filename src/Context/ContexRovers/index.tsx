@@ -71,3 +71,5 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     </ContextRovers.Provider>
   );
 };
+
+// Fiz a function que busca photos por dia solar
