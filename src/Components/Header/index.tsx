@@ -1,13 +1,18 @@
 import { StyledHeader } from "./styled";
 import Logo from "../../Assets/Imgs/espacoAMais.svg";
-import Menu from "../../Assets/Imgs/Menu.svg";
+import { useContext } from "react";
+import { ContextRovers } from "../../Context/ContexRovers";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export const Header = () => {
+  const { setModal } = useContext(ContextRovers);
   return (
     <StyledHeader>
       <div className="conteinerHeader">
         <img className="logo" src={Logo} alt="Espaço a Mais" />
-        <img className="menu" src={Menu} alt="Menu" />
+        <button onClick={() => setModal(true)}>
+          <AiOutlineMenu className="menu" />
+        </button>
       </div>
     </StyledHeader>
   );
