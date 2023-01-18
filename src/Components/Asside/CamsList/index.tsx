@@ -6,7 +6,7 @@ import { StyledCamsList, StyledLi } from "./styled";
 
 export const CamsList = () => {
   const carousel = useRef<any>();
-  const { rover, modal, filterCams, setCams, setPhotos } =
+  const { rover, modal, filterCams, setCams, setPhotos, setCheckRequest } =
     useContext(ContextRovers);
 
   const [height, setHeight] = useState(0);
@@ -81,6 +81,11 @@ export const CamsList = () => {
       }
       return iten;
     });
+    if (element.name !== "Todos") {
+      setCheckRequest(false);
+    } else {
+      setCheckRequest(true);
+    }
     setPhotos([]);
     setCams(newUnique);
     filterCams(element.sigla);
