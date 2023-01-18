@@ -6,18 +6,23 @@ export const InputSun = () => {
   const { setSun, setPhotos, sun, setPage, setCheckRequest, setBackup } =
     useContext(ContextRovers);
 
-  function Sun(operator: "sub" | "sum") {
+  function Sun(operator: string) {
     setCheckRequest(true);
     if (operator === "sub") {
       setPhotos([]);
       setBackup([]);
       setPage(0);
       setSun((e) => e - 1);
-    } else {
+    } else if (operator === "sum") {
       setPhotos([]);
       setBackup([]);
       setPage(0);
       setSun((e) => e + 1);
+    } else {
+      setPhotos([]);
+      setBackup([]);
+      setPage(0);
+      setSun(Number(operator));
     }
   }
   return (
@@ -27,7 +32,11 @@ export const InputSun = () => {
         <button onClick={() => Sun("sub")} className="sub">
           -
         </button>
-        <input placeholder="0000" value={sun} type="number" />
+        <input
+          onInput={(e) => Sun(e.currentTarget.value)}
+          placeholder={sun + ""}
+          type="number"
+        />
         <button onClick={() => Sun("sum")} className="sum">
           +
         </button>
