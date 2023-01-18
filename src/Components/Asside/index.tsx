@@ -18,14 +18,14 @@ export const Aside = ({ close }: iAside) => {
   const { modal } = useContext(ContextRovers);
 
   return (
-    <StyledAsideDiv modal={modal}>
+    <StyledAsideDiv className="ident" modal={modal}>
       <motion.div
         initial={{ x: -Width, zIndex: 2 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.5 }}
         className="moveAside"
       >
-        <StyledAsside close={close}>
+        <StyledAsside className="ttt" close={close}>
           <BoxClose close={close} />
           <InputSun />
           <InputDay />

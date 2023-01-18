@@ -12,6 +12,7 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
 
   ul {
     width: 90%;
+
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
@@ -19,20 +20,37 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
 
     margin-bottom: 50px;
 
+    overflow: auto;
+
+    @media (min-width: 699px) {
+      overflow: hidden;
+    }
+
     li {
       width: 30%;
-      min-height: 220px;
-
       margin-bottom: 5%;
+      min-height: 300px;
+      min-width: 300px;
 
-      background-image: url(${({ loading }) => loading});
-      background-repeat: no-repeat;
+      margin-right: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       p {
         font-weight: 600;
         margin-top: -20px;
 
         color: var(--Withe);
+      }
+      @media (min-width: 699px) {
+        min-height: 0;
+        min-width: 0;
+
+        margin-right: 0;
+
+        gap: 0;
       }
     }
     h2 {
@@ -42,21 +60,11 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
     @media (min-width: 700px) {
       justify-content: space-between;
       flex-wrap: wrap;
-
-      li {
-        min-width: 30%;
-        max-width: 30%;
-      }
     }
 
     @media (min-width: 1100px) {
       width: 100%;
       flex-wrap: wrap;
-
-      li {
-        max-height: 30%;
-        max-width: 30%;
-      }
     }
   }
 

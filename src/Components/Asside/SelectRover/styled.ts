@@ -9,8 +9,6 @@ export const StyledSelectDiv = styled.div`
   gap: 10px;
 
   select {
-    padding: 0 10px 0 10px;
-
     height: 40px;
 
     border: none;
@@ -18,6 +16,12 @@ export const StyledSelectDiv = styled.div`
     outline: 1px solid var(--Black);
 
     border-radius: 50px;
+
+    option {
+      font-size: 0.6rem;
+
+      padding: 0;
+    }
   }
   .hidden {
     display: none;

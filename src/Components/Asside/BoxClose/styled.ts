@@ -10,5 +10,9 @@ export const StyledBocClose = styled.div`
 
   button {
     background: none;
+
+    @media (min-width: 1199px) {
+      display: none;
+    }
   }
 `;

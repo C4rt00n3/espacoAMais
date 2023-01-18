@@ -29,7 +29,6 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     position: absolute;
     top: 0;
   }
-
   .buttonRocket {
     width: 90px;
     height: min-content;
@@ -75,7 +74,11 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
   }
   .gap {
     width: 100%;
-    height: 15%;
+    height: 60px;
+
+    @media (min-width: 1199px) {
+      height: 15%;
+    }
 
     position: fixed;
     z-index: 1;
@@ -91,9 +94,6 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     flex-direction: column;
 
     gap: 40px;
-
-    @media (min-width: 1000px) {
-    }
   }
   .cardImageNasa {
     width: 100%;

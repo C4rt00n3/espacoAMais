@@ -12,11 +12,9 @@ export const BoxClose = ({ close }: iBoxClose) => {
   return (
     <StyledBocClose className="boxClose">
       <h3 className="subTitleFilter">Filtro</h3>
-      {close && (
-        <button onClick={() => setModal(false)}>
-          <AiFillCloseCircle />
-        </button>
-      )}
+      <button onClick={() => setModal(false)}>
+        <AiFillCloseCircle />
+      </button>
     </StyledBocClose>
   );
 };
