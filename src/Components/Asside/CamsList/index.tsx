@@ -6,7 +6,8 @@ import { StyledCamsList, StyledLi } from "./styled";
 
 export const CamsList = () => {
   const carousel = useRef<any>();
-  const { rover, modal } = useContext(ContextRovers);
+  const { rover, modal, filterCams, setCams, setPhotos } =
+    useContext(ContextRovers);
 
   const [height, setHeight] = useState(0);
 
@@ -15,6 +16,7 @@ export const CamsList = () => {
 
     if (rover === "Curiosity") {
       const rovers = [
+        "Todos",
         "Navigation Camera",
         "Mars Descent Imager",
         "Mars Hand Lens Imager",
@@ -31,6 +33,7 @@ export const CamsList = () => {
     }
     if (rover === "Opportunity" || rover === "Spirit") {
       const rovers = [
+        "Todos",
         "Rear Hazard Avoidance Camera",
         "Front Hazard Avoidance Camera",
         "Miniature Thermal Emission Spectrometer (Mini-TES)",
@@ -45,6 +48,7 @@ export const CamsList = () => {
       uniqueUse = listCams;
     } else if (rover === "Perseverance") {
       const rovers = [
+        "Todos",
         "Rover Up-Look Camera",
         "Rover Down-Look Camera",
         "Descent Stage Down-Look Camera",
@@ -69,15 +73,27 @@ export const CamsList = () => {
     }
     return uniqueUse;
   }
+  function selectCam(element: { name: string; list: boolean; sigla: string }) {
+    unique.map((element) => (element.list = false));
+    const newUnique = unique.map((iten) => {
+      if (iten.name === element.name) {
+        iten.list = true;
+      }
+      return iten;
+    });
+    setPhotos([]);
+    setCams(newUnique);
+    filterCams(element.sigla);
+  }
 
   useEffect(() => {
     setHeight(
       carousel.current?.scrollHeight - carousel.current?.offsetHeight + 50
     );
-    console.log(carousel.current?.scrollHeight, carousel.current?.offsetHeight);
   }, [modal, rover]);
 
   const camsRover = camsRovers();
+
   return (
     <StyledCamsList>
       <motion.div
@@ -95,9 +111,14 @@ export const CamsList = () => {
               width={element.name.length % 2 === 0 ? "120px" : "100px"}
               key={i}
             >
-              <motion.li key={i}>
-                <p>{element.name}</p>
-              </motion.li>
+              <button onClick={(e) => selectCam(element)}>
+                <motion.li
+                  className={element.list ? "backgroundBlue" : ""}
+                  key={i}
+                >
+                  <p>{element.name}</p>
+                </motion.li>
+              </button>
             </StyledLi>
           ))}
         </motion.ul>

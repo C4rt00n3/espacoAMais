@@ -14,6 +14,21 @@ export interface iContextRover {
   loading: boolean;
   checkRequest: boolean;
   setCheckRequest: React.Dispatch<React.SetStateAction<boolean>>;
+  filterCams(name: string): Promise<void>;
+  cams: {
+    name: string;
+    list: boolean;
+    sigla: string;
+  }[];
+  setCams: React.Dispatch<
+    React.SetStateAction<
+      {
+        name: string;
+        list: boolean;
+        sigla: string;
+      }[]
+    >
+  >;
 }
 
 export interface iAuthContext {
