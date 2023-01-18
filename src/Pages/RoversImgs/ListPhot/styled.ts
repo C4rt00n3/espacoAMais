@@ -4,7 +4,7 @@ interface iStyledPhotos {
   loading?: string;
 }
 
-export const StyledListPhotos = styled.div<iStyledPhotos>`
+export const StyledListPhotos = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -17,6 +17,7 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
     align-items: center;
     flex-wrap: nowrap;
     justify-content: space-between;
+    flex-direction: row;
 
     margin-bottom: 50px;
 
@@ -27,25 +28,24 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
     }
 
     li {
-      width: 30%;
-      margin-bottom: 5%;
+      width: 100%;
+      height: 100%;
+
       min-height: 300px;
       min-width: 300px;
 
       margin-right: 40px;
 
       display: flex;
-      align-items: center;
-      justify-content: center;
-
+      flex-direction: column-reverse;
+      margin: 10px;
       p {
         font-weight: 600;
-        margin-top: -20px;
 
         color: var(--Withe);
       }
       @media (min-width: 699px) {
-        min-height: 0;
+        min-height: 300;
         min-width: 0;
 
         margin-right: 0;
@@ -77,6 +77,7 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
     align-items: center;
     justify-content: center;
 
+    width: 100%;
     svg {
       width: 40px;
       height: 40px;
@@ -110,5 +111,14 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
         transform: rotate(360deg);
       }
     }
+  }
+`;
+
+export const StyledLi = styled.div<iStyledPhotos>`
+  width: 30%;
+
+  margin-bottom: 5%;
+  li {
+    background-image: url(${({ loading }) => loading});
   }
 `;

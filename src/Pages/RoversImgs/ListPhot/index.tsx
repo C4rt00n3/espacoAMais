@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useContext, useEffect, useRef } from "react";
 import { ContextRovers } from "../../../Context/ContexRovers";
-import { StyledListPhotos } from "./styled";
+import { StyledLi, StyledListPhotos } from "./styled";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import gif from "../../../Assets/Imgs/Loading_icon.gif";
 
@@ -30,27 +30,28 @@ export const ListPhotos = ({ ref }: iLIstPhotos) => {
   }, [setPage, loading, checkRequest, photos]);
 
   return (
-    <StyledListPhotos loading={gif}>
+    <StyledListPhotos>
       <motion.ul ref={ref}>
         {photos.map((element, i) => (
-          <motion.li
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="imgLi"
-            key={i}
-          >
-            <img src={element.img_src} alt={"imagem do rover" + rover} />
-            <p>{element.camera?.full_name}</p>
-          </motion.li>
+          <StyledLi loading={element.img_src}>
+            <motion.li
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="imgLi"
+              key={i}
+            >
+              <p>{element.camera?.full_name}</p>
+            </motion.li>
+          </StyledLi>
         ))}
+        <div ref={observer} className="boxLoading">
+          {loading && <AiOutlineLoading3Quarters className="loading" />}
+        </div>
         {!photos.length && !loading && (
           <h2>{"Não há fotos no dia solar " + sun}</h2>
         )}
       </motion.ul>
-      <div ref={observer} className="boxLoading">
-        {loading && <AiOutlineLoading3Quarters className="loading" />}
-      </div>
     </StyledListPhotos>
   );
 };
