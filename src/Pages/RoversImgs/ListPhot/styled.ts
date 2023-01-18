@@ -27,6 +27,13 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
 
       background-image: url(${({ loading }) => loading});
       background-repeat: no-repeat;
+
+      p {
+        font-weight: 600;
+        margin-top: -20px;
+
+        color: var(--Withe);
+      }
     }
     h2 {
       font-size: var(--Font24);
