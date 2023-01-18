@@ -1,6 +1,15 @@
 import { RoutesMain } from "./Routes/RoutesMain";
-
-export const unique = [
+interface iCamsList {
+  name: string;
+  list: boolean;
+  sigla: string;
+}
+export const unique: iCamsList[] = [
+  {
+    name: "Todos",
+    list: true,
+    sigla: "Todos",
+  },
   {
     name: "Miniature Thermal Emission Spectrometer (Mini-TES)",
     list: false,

@@ -18,6 +18,45 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
   align-items: center;
   flex-direction: column;
 
+  .hidden {
+    width: 0;
+    height: 0;
+
+    background: none;
+
+    font-size: 0;
+
+    position: absolute;
+    top: 0;
+  }
+
+  .buttonRocket {
+    width: 90px;
+    height: min-content;
+
+    position: absolute;
+    top: 70px;
+
+    background-color: var(--PrincipalBlue);
+    color: var(--Withe);
+
+    border-radius: 50px;
+
+    padding: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    z-index: 4;
+
+    border: none;
+  }
+  .rocket {
+    width: 30px;
+    height: 30px;
+  }
   .conteiner {
     width: 100%;
     height: 85%;
@@ -27,8 +66,6 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     display: flex;
     justify-content: space-between;
 
-    overflow-x: hidden;
-
     @media (min-width: 1100px) {
       width: 90%;
 
@@ -36,7 +73,16 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
       bottom: 0;
     }
   }
+  .gap {
+    width: 100%;
+    height: 15%;
 
+    position: fixed;
+    z-index: 1;
+    top: 0;
+
+    background-color: var(--Withe);
+  }
   .cardImg {
     width: 100%;
     height: 100%;

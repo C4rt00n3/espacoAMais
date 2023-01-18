@@ -4,13 +4,11 @@ export const StyleGlobal = createGlobalStyle`
 
     body{
         width: 100vw;
-        height: 100vh;
 
         font-family: 'Jaldi', sans-serif;
 
         scrollbar-width: thin;          
-        scrollbar-color: blue orange;   
-    
+        scrollbar-color: blue orange;
 
 
 
@@ -21,6 +19,9 @@ export const StyleGlobal = createGlobalStyle`
         .App{
             width: 100%;
             height: 100%;
+
+        scroll-behavior: smooth;
+
         }
 
         * {

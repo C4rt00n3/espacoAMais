@@ -13,13 +13,15 @@ export const StyledListPhotos = styled.div`
     flex-wrap: nowrap;
     justify-content: space-between;
 
-    overflow: auto;
-
     margin-bottom: 50px;
 
     li {
       width: 30%;
       margin-bottom: 5%;
+    }
+    h2 {
+      font-size: var(--Font24);
+      font-weight: 600;
     }
     @media (min-width: 700px) {
       justify-content: space-between;
@@ -51,15 +53,13 @@ export const StyledListPhotos = styled.div`
     align-items: center;
     justify-content: center;
 
-    h2 {
-      font-size: var(--Font24);
-      font-weight: 600;
-    }
     svg {
       width: 40px;
       height: 40px;
 
       color: var(--Black);
+
+      margin-top: -60px;
     }
     .loading {
       animation: gira 1s infinite linear;

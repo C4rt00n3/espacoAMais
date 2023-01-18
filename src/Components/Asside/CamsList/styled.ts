@@ -5,11 +5,26 @@ interface iSTyledCams {
 }
 
 export const StyledCamsList = styled.div`
+  .backgroundBlue {
+    background: none;
+    color: var(--PrincipalBlue);
+    border: 2px solid var(--PrincipalBlue);
+
+    font-weight: 600;
+  }
+  button {
+    width: min-content;
+    height: min-content;
+
+    background: none;
+
+    padding: 0;
+  }
   width: 90%;
   .carousel {
     width: 100%;
 
-    max-height: 120px;
+    max-height: 130px;
 
     overflow: hidden;
 
