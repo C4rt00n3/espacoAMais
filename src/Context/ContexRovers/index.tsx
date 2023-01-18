@@ -26,7 +26,6 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   useEffect(() => {
     async function Get() {
       setLoading(true);
-
       try {
         const response: IRootObject = await api.get(
           `/rovers/${rover}/photos?`,
@@ -54,12 +53,13 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     }
 
     if (!checkRequest) {
-      console.log("aoba");
       return;
     } else {
       Get();
     }
   }, [rover, sun, page, checkRequest]);
+
+  console.log(rover);
 
   async function filterCams(name: string) {
     if (name === "Todos") {

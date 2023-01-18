@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledListPhotos = styled.div`
+interface iStyledPhotos {
+  loading?: string;
+}
+
+export const StyledListPhotos = styled.div<iStyledPhotos>`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -17,7 +21,12 @@ export const StyledListPhotos = styled.div`
 
     li {
       width: 30%;
+      min-height: 220px;
+
       margin-bottom: 5%;
+
+      background-image: url(${({ loading }) => loading});
+      background-repeat: no-repeat;
     }
     h2 {
       font-size: var(--Font24);

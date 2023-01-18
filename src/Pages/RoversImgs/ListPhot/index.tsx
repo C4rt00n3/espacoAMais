@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef } from "react";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledListPhotos } from "./styled";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import gif from "../../../Assets/Imgs/Loading_icon.gif";
 
 interface iLIstPhotos {
   ref: React.MutableRefObject<any>;
@@ -29,7 +30,7 @@ export const ListPhotos = ({ ref }: iLIstPhotos) => {
   }, [setPage, loading, checkRequest, photos]);
 
   return (
-    <StyledListPhotos>
+    <StyledListPhotos loading={gif}>
       <motion.ul ref={ref}>
         {photos.map((element, i) => (
           <motion.li
