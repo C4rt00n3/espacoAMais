@@ -23,36 +23,13 @@ export const StyledListPhotos = styled.div`
 
     overflow: auto;
 
+    gap: 300px;
+
     @media (min-width: 699px) {
       overflow: hidden;
+      gap: 0;
     }
 
-    li {
-      width: 100%;
-      height: 100%;
-
-      min-height: 300px;
-      min-width: 300px;
-
-      margin-right: 40px;
-
-      display: flex;
-      flex-direction: column-reverse;
-      margin: 10px;
-      p {
-        font-weight: 600;
-
-        color: var(--Withe);
-      }
-      @media (min-width: 699px) {
-        min-height: 300;
-        min-width: 0;
-
-        margin-right: 0;
-
-        gap: 0;
-      }
-    }
     h2 {
       font-size: var(--Font24);
       font-weight: 600;
@@ -68,9 +45,9 @@ export const StyledListPhotos = styled.div`
     }
   }
 
-  img {
-    width: 100%;
-    height: 100%;
+  .imageCard {
+    width: min-content;
+    height: min-content;
   }
   .boxLoading {
     display: flex;
@@ -78,6 +55,9 @@ export const StyledListPhotos = styled.div`
     justify-content: center;
 
     width: 100%;
+    min-width: 30px;
+    min-height: 30px;
+
     svg {
       width: 40px;
       height: 40px;
@@ -112,12 +92,48 @@ export const StyledListPhotos = styled.div`
       }
     }
   }
+  li {
+    width: 100%;
+    height: 100%;
+
+    min-height: 300px;
+    min-width: 300px;
+
+    margin-right: 40px;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+
+    margin: 10px;
+
+    p {
+      font-weight: 600;
+
+      color: var(--Withe);
+    }
+    @media (min-width: 699px) {
+      min-height: 300px;
+      min-width: 100%;
+
+      margin-right: 0;
+
+      gap: 0;
+    }
+  }
 `;
 
 export const StyledLi = styled.div<iStyledPhotos>`
   width: 30%;
 
   margin-bottom: 5%;
+
+  @media (min-width: 699px) {
+    width: 45%;
+  }
+  @media (min-width: 1199px) {
+    width: 30%;
+  }
   li {
     background-image: url(${({ loading }) => loading});
   }

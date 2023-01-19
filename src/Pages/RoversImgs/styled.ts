@@ -64,6 +64,7 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     @media (min-width: 1100px) {
       width: 90%;

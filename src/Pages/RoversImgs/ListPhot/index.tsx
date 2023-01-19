@@ -3,14 +3,13 @@ import { useContext, useEffect, useRef } from "react";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledLi, StyledListPhotos } from "./styled";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import gif from "../../../Assets/Imgs/Loading_icon.gif";
 
 interface iLIstPhotos {
   ref: React.MutableRefObject<any>;
 }
 
 export const ListPhotos = ({ ref }: iLIstPhotos) => {
-  const { photos, rover, loading, setPage, checkRequest, sun } =
+  const { photos, loading, setPage, checkRequest, sun } =
     useContext(ContextRovers);
 
   const observer = useRef<any>();
