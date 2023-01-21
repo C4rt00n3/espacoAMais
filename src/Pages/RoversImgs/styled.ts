@@ -115,4 +115,16 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
       height: 100%;
     }
   }
+  .moveCarousel {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;

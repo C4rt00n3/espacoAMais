@@ -14,7 +14,12 @@ export interface iContextRover {
   loading: boolean;
   checkRequest: boolean;
   setCheckRequest: React.Dispatch<React.SetStateAction<boolean>>;
-  filterCams(name: string): Promise<void>;
+  setCamera: React.Dispatch<React.SetStateAction<string>>;
+  camera: string;
+  setModalImg: React.Dispatch<React.SetStateAction<boolean>>;
+  modalImg: boolean;
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
   cams: {
     name: string;
     list: boolean;

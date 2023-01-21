@@ -23,7 +23,7 @@ export const StyledListPhotos = styled.div`
 
     overflow: auto;
 
-    gap: 300px;
+    gap: 250px;
 
     @media (min-width: 699px) {
       overflow: hidden;
@@ -61,6 +61,8 @@ export const StyledListPhotos = styled.div`
     svg {
       width: 40px;
       height: 40px;
+
+      position: absolute;
 
       color: var(--Black);
 
@@ -109,7 +111,6 @@ export const StyledListPhotos = styled.div`
 
     p {
       font-weight: 600;
-
       color: var(--Withe);
     }
     @media (min-width: 699px) {
@@ -136,5 +137,8 @@ export const StyledLi = styled.div<iStyledPhotos>`
   }
   li {
     background-image: url(${({ loading }) => loading});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
   }
 `;

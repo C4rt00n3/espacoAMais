@@ -1,17 +1,21 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledSelectDiv } from "./styled";
 
 export const SelectRover = () => {
-  const { rover, setRover, setCheckRequest, setPhotos, setBackup } =
+  const { rover, setRover, setCheckRequest, setPhotos, setBackup, sun } =
     useContext(ContextRovers);
   const ArrayRover = ["Curiosity", "Opportunity", "Spirit", "Perseverance"];
+
+  const nav = useNavigate();
 
   function selectRover(name: string) {
     setBackup([]);
     setPhotos([]);
     setCheckRequest(true);
     setRover(name);
+    nav(`/rover/${name}/${sun - 1}`);
   }
 
   return (

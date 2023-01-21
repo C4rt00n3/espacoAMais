@@ -1,10 +1,13 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledInputSun } from "./styled";
 
 export const InputSun = () => {
-  const { setSun, setPhotos, sun, setPage, setCheckRequest, setBackup } =
+  const { setSun, setPhotos, sun, setPage, setCheckRequest, setBackup, rover } =
     useContext(ContextRovers);
+
+  const nav = useNavigate();
 
   function Sun(operator: string) {
     setCheckRequest(true);
@@ -13,16 +16,19 @@ export const InputSun = () => {
       setBackup([]);
       setPage(0);
       setSun((e) => e - 1);
+      nav(`/rover/${rover}/${sun > 0 ? sun - 1 : 0}/`);
     } else if (operator === "sum") {
       setPhotos([]);
       setBackup([]);
       setPage(0);
       setSun((e) => e + 1);
+      nav(`/rover/${rover ? rover : ""}/${sun > 0 ? sun + 1 : 0}`);
     } else {
       setPhotos([]);
       setBackup([]);
       setPage(0);
       setSun(Number(operator));
+      nav(`/rover/${rover}/${Number(operator) > 0 ? operator : 0}`);
     }
   }
   return (
@@ -35,6 +41,7 @@ export const InputSun = () => {
         <input
           onInput={(e) => Sun(e.currentTarget.value)}
           placeholder={sun + ""}
+          value={sun > 0 ? sun : ""}
           type="number"
         />
         <button onClick={() => Sun("sum")} className="sum">

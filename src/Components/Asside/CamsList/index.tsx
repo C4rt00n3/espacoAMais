@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
 import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { unique } from "../../../App";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledCamsList, StyledLi } from "./styled";
 
 export const CamsList = () => {
   const carousel = useRef<any>();
-  const { rover, modal, filterCams, setCams, setPhotos, setCheckRequest } =
+  const { rover, modal, setCamera, setCams, setPhotos, setCheckRequest } =
     useContext(ContextRovers);
+
+  const { sol, rovers } = useParams();
+  const nav = useNavigate();
 
   const [height, setHeight] = useState(0);
 
@@ -81,14 +85,17 @@ export const CamsList = () => {
       }
       return iten;
     });
+
     if (element.name !== "Todos") {
       setCheckRequest(false);
+      nav(`/rover/${rovers}/${sol}/${element.sigla}`);
     } else {
       setCheckRequest(true);
     }
     setPhotos([]);
     setCams(newUnique);
-    filterCams(element.sigla);
+    setCamera(element.sigla);
+    nav(`/rover/${rovers}/${sol}/${element.sigla}`);
   }
 
   useEffect(() => {

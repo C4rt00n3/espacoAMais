@@ -14,7 +14,7 @@ export const StyledHeader = styled.header`
   position: fixed;
 
   left: 0;
-  z-index: 4;
+  z-index: 2;
 
   div {
     width: 90%;
