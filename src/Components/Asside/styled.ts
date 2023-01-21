@@ -6,8 +6,9 @@ interface iStyledAside {
 }
 
 export const StyledAsside = styled.aside<iStyledAside>`
-  width: ${({ close }) => (close ? "100%" : "0")};
-  height: ${({ close }) => (close ? "90%" : "0")};
+  width: ${({ close }) => (close ? "100%" : "0%")};
+  height: ${({ close }) => (close ? "90%" : "0%")};
+
   min-width: 320px;
 
   background-color: var(--WitheFocus);

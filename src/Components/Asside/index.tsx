@@ -6,7 +6,7 @@ import { InputDay } from "./InputDay";
 import { BoxClose } from "./BoxClose";
 import { BoxLight } from "./BoxLight";
 import { InputSun } from "./InputSun";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ContextRovers } from "../../Context/ContexRovers";
 
 interface iAside {
@@ -14,19 +14,20 @@ interface iAside {
 }
 
 export const Aside = ({ close }: iAside) => {
-  const Width = window.screen.width;
   const { modal } = useContext(ContextRovers);
+  const [width, setWidth] = useState(window.screen.width);
+  const [zero, setZero] = useState(0);
 
   return (
     <StyledAsideDiv className="ident" modal={modal}>
       <motion.div
-        initial={{ x: -Width, zIndex: 2 }}
-        animate={{ x: 0 }}
+        initial={{ x: -width }}
+        animate={{ x: zero }}
         transition={{ duration: 0.5 }}
         className="moveAside"
       >
-        <StyledAsside className="ttt" close={close}>
-          <BoxClose close={close} />
+        <StyledAsside className="ttt" modal={modal} close={close}>
+          <BoxClose width={width} setZero={setZero} setWidth={setWidth} />
           <InputSun />
           <InputDay />
           <CamsList />
