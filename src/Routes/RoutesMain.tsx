@@ -7,21 +7,23 @@ export const RoutesMain = () => {
   return (
     <Routes>
       <Route
-        path="rovers"
+        path="/rover/:rovers?/:sol?/:cam?/"
         element={
           <ProviderContextRover>
             <RoversImgs />
           </ProviderContextRover>
         }
       />
+
       <Route
-        path="*"
+        path="/"
         element={
           <ProviderContextRover>
             <RoversImgs />
           </ProviderContextRover>
         }
       />
+
       <Route path="planetary" element={<Planetary />} />
     </Routes>
   );

@@ -4,7 +4,7 @@ interface iStyledPhotos {
   loading?: string;
 }
 
-export const StyledListPhotos = styled.div<iStyledPhotos>`
+export const StyledListPhotos = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -12,29 +12,24 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
 
   ul {
     width: 90%;
+
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
     justify-content: space-between;
+    flex-direction: row;
 
     margin-bottom: 50px;
 
-    li {
-      width: 30%;
-      min-height: 220px;
+    overflow: auto;
 
-      margin-bottom: 5%;
+    gap: 250px;
 
-      background-image: url(${({ loading }) => loading});
-      background-repeat: no-repeat;
-
-      p {
-        font-weight: 600;
-        margin-top: -20px;
-
-        color: var(--Withe);
-      }
+    @media (min-width: 699px) {
+      overflow: hidden;
+      gap: 0;
     }
+
     h2 {
       font-size: var(--Font24);
       font-weight: 600;
@@ -42,36 +37,32 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
     @media (min-width: 700px) {
       justify-content: space-between;
       flex-wrap: wrap;
-
-      li {
-        min-width: 30%;
-        max-width: 30%;
-      }
     }
 
     @media (min-width: 1100px) {
       width: 100%;
       flex-wrap: wrap;
-
-      li {
-        max-height: 30%;
-        max-width: 30%;
-      }
     }
   }
 
-  img {
-    width: 100%;
-    height: 100%;
+  .imageCard {
+    width: min-content;
+    height: min-content;
   }
   .boxLoading {
     display: flex;
     align-items: center;
     justify-content: center;
 
+    width: 100%;
+    min-width: 30px;
+    min-height: 30px;
+
     svg {
       width: 40px;
       height: 40px;
+
+      position: absolute;
 
       color: var(--Black);
 
@@ -102,5 +93,52 @@ export const StyledListPhotos = styled.div<iStyledPhotos>`
         transform: rotate(360deg);
       }
     }
+  }
+  li {
+    width: 100%;
+    height: 100%;
+
+    min-height: 300px;
+    min-width: 300px;
+
+    margin-right: 40px;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+
+    margin: 10px;
+
+    p {
+      font-weight: 600;
+      color: var(--Withe);
+    }
+    @media (min-width: 699px) {
+      min-height: 300px;
+      min-width: 100%;
+
+      margin-right: 0;
+
+      gap: 0;
+    }
+  }
+`;
+
+export const StyledLi = styled.div<iStyledPhotos>`
+  width: 30%;
+
+  margin-bottom: 5%;
+
+  @media (min-width: 699px) {
+    width: 45%;
+  }
+  @media (min-width: 1199px) {
+    width: 30%;
+  }
+  li {
+    background-image: url(${({ loading }) => loading});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
   }
 `;

@@ -5,9 +5,10 @@ import nasa from "../../Assets/Imgs/ImagemNasa.svg";
 import nasa2 from "../../Assets/Imgs/ImagemNasa2.svg";
 import { motion } from "framer-motion";
 import { ListPhotos } from "./ListPhot";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ContextRovers } from "../../Context/ContexRovers";
 import { IoMdRocket } from "react-icons/io";
+import { Carousel } from "../../Components/carousel";
 
 const Imagens = {
   img1: nasa,
@@ -15,11 +16,11 @@ const Imagens = {
 };
 
 export const RoversImgs = () => {
-  const { modal } = useContext(ContextRovers);
+  const { modal, modalImg, setModalImg, setIndex, index } =
+    useContext(ContextRovers);
   const [scroll, setScrollPosition] = useState(0);
 
   const sizeMonitor = window.outerHeight;
-  const listPhotos = useRef<any>();
 
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -35,11 +36,13 @@ export const RoversImgs = () => {
   }, []);
   return (
     <StyledRoversImgs img={Imagens} className="indetificado">
+      {modalImg && <Carousel i={index} setModalImg={setModalImg} />}
+
       <Header />
       <div className="gap"></div>
       <div className="conteiner">
         {modal && <Aside close={true} />}
-        <Aside />
+        {!modal && <Aside close={false} />}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -49,10 +52,10 @@ export const RoversImgs = () => {
           <p id="ref" className="hidden"></p>
           <div className="cardImageNasa"></div>
 
-          <ListPhotos ref={listPhotos} />
+          <ListPhotos setIndex={setIndex} setModalImg={setModalImg} />
         </motion.div>
       </div>
-      {scroll > sizeMonitor * 2 && (
+      {scroll > sizeMonitor * 2 && !modalImg && (
         <a href="#ref" className="buttonRocket">
           <IoMdRocket className="rocket" />
         </a>

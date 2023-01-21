@@ -6,14 +6,13 @@ interface iStyledAside {
 }
 
 export const StyledAsside = styled.aside<iStyledAside>`
-  width: ${({ close }) => (close ? "100%" : "0")};
-  height: ${({ close }) => (close ? "90%" : "0")};
+  width: ${({ close }) => (close ? "100%" : "0%")};
+  height: ${({ close }) => (close ? "90%" : "0%")};
+
+  min-width: 320px;
 
   background-color: var(--WitheFocus);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  min-width: 320px;
-  max-width: 320px;
 
   display: flex;
   align-items: center;
@@ -21,8 +20,6 @@ export const StyledAsside = styled.aside<iStyledAside>`
   justify-content: space-between;
 
   border-radius: 0 8px 0 0;
-
-  overflow: hidden;
 
   position: absolute;
 

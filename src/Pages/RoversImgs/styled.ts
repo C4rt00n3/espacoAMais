@@ -29,7 +29,6 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     position: absolute;
     top: 0;
   }
-
   .buttonRocket {
     width: 90px;
     height: min-content;
@@ -65,6 +64,7 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     @media (min-width: 1100px) {
       width: 90%;
@@ -75,7 +75,11 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
   }
   .gap {
     width: 100%;
-    height: 15%;
+    height: 60px;
+
+    @media (min-width: 1199px) {
+      height: 15%;
+    }
 
     position: fixed;
     z-index: 1;
@@ -91,9 +95,6 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     flex-direction: column;
 
     gap: 40px;
-
-    @media (min-width: 1000px) {
-    }
   }
   .cardImageNasa {
     width: 100%;
@@ -113,5 +114,17 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
       width: 100%;
       height: 100%;
     }
+  }
+  .moveCarousel {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
