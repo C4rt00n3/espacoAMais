@@ -35,6 +35,8 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
 
   const GetDate = async () => {
     !camera.length && setLoading(true);
+    setBackup([]);
+    setPhotos([]);
     try {
       sun < 0 && setSun(0);
       const response: IRootObject = await api.get(`/rovers/${rover}/photos?`, {
@@ -60,6 +62,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
 
   useEffect(() => {
     const Get = async () => {
+      setLoading(true);
       if (date?.length) {
         GetDate();
         return;
