@@ -49,7 +49,7 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
       return "para a camera " + camera;
     } else if (!camera.length && !date) {
       return "no dia solar " + sun;
-    } else {
+    } else if (date && !loading) {
       return "no dia" + date;
     }
   };
