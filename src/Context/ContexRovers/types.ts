@@ -34,6 +34,8 @@ export interface iContextRover {
       }[]
     >
   >;
+  setEarthDate: React.Dispatch<React.SetStateAction<string>>;
+  earthDate: string;
 }
 
 export interface iAuthContext {

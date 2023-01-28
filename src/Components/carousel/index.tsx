@@ -45,7 +45,6 @@ export const Carousel = ({ setModalImg, i }: iCarousel) => {
     });
     if (observer.current && photos.length) {
       intersect.observe(observer.current);
-      console.log("oiii");
     }
     return () => intersect.disconnect();
   }, [setPage, photos]);

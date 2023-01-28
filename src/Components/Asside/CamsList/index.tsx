@@ -7,16 +7,25 @@ import { StyledCamsList, StyledLi } from "./styled";
 
 export const CamsList = () => {
   const carousel = useRef<any>();
-  const { rover, modal, setCamera, setCams, setPhotos, setCheckRequest } =
+  const { rover, modal, setCamera, setCams, setPhotos, setCheckRequest, sun } =
     useContext(ContextRovers);
 
   const { sol, rovers } = useParams();
   const nav = useNavigate();
 
+  const { camera } = useContext(ContextRovers);
+
   const [height, setHeight] = useState(0);
 
   function camsRovers() {
-    let uniqueUse = unique;
+    const u = unique.filter((element, i) =>
+      element.sigla === camera ? (element.list = true) : (element.list = false)
+    );
+    const ua = unique.filter((element, i) => element.sigla !== camera);
+
+    ua.splice(1, 0, u[0]);
+
+    let uniqueUse = ua;
 
     if (rover === "Curiosity") {
       const rovers = [
@@ -75,8 +84,19 @@ export const CamsList = () => {
       );
       uniqueUse = listCams;
     }
+
+    const t = unique.some((e) => e.list === true);
+
+    uniqueUse.filter((element) => {
+      if (!t && element.sigla === "Todos") {
+        element.list = true;
+      }
+      return element;
+    });
+
     return uniqueUse;
   }
+
   function selectCam(element: { name: string; list: boolean; sigla: string }) {
     unique.map((element) => (element.list = false));
     const newUnique = unique.map((iten) => {
@@ -95,7 +115,7 @@ export const CamsList = () => {
     setPhotos([]);
     setCams(newUnique);
     setCamera(element.sigla);
-    nav(`/rover/${rovers}/${sol}/${element.sigla}`);
+    nav(`/rover/${rover}/${sun}/${element.sigla}`);
   }
 
   useEffect(() => {

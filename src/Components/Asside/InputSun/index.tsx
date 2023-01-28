@@ -4,8 +4,16 @@ import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledInputSun } from "./styled";
 
 export const InputSun = () => {
-  const { setSun, setPhotos, sun, setPage, setCheckRequest, setBackup, rover } =
-    useContext(ContextRovers);
+  const {
+    setSun,
+    setPhotos,
+    sun,
+    setPage,
+    setCheckRequest,
+    setBackup,
+    rover,
+    setCamera,
+  } = useContext(ContextRovers);
 
   const nav = useNavigate();
 
@@ -15,14 +23,13 @@ export const InputSun = () => {
       setPhotos([]);
       setBackup([]);
       setPage(0);
-      setSun((e) => e - 1);
       nav(`/rover/${rover}/${sun > 0 ? sun - 1 : 0}/`);
     } else if (operator === "sum") {
       setPhotos([]);
       setBackup([]);
       setPage(0);
       setSun((e) => e + 1);
-      nav(`/rover/${rover ? rover : ""}/${sun > 0 ? sun + 1 : 0}`);
+      nav(`/rover/${rover ? rover : ""}/${sun >= 0 ? sun + 1 : 0}`);
     } else {
       setPhotos([]);
       setBackup([]);
@@ -30,6 +37,7 @@ export const InputSun = () => {
       setSun(Number(operator));
       nav(`/rover/${rover}/${Number(operator) > 0 ? operator : 0}`);
     }
+    setCamera("");
   }
   return (
     <StyledInputSun className="inputSol">

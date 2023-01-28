@@ -4,7 +4,7 @@ import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledLi, StyledListPhotos } from "./styled";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { IPhotosItem } from "../../../Context/ContexRovers/types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface iLIstPhotos {
   setModalImg: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,8 +12,12 @@ interface iLIstPhotos {
 }
 
 export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
-  const { photos, loading, setPage, checkRequest, sun } =
+  const { photos, loading, setPage, checkRequest, sun, camera } =
     useContext(ContextRovers);
+
+  const { date } = useParams();
+
+  const mensage = "Não há fotos  ";
 
   const observer = useRef<any>();
   const ref = useRef<any>();
@@ -28,7 +32,7 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         }, 500);
       }
     });
-    if (observer.current && photos.length) {
+    if (observer.current && photos.length && !date) {
       intersect.observe(observer.current);
     }
     return () => intersect.disconnect();
@@ -40,14 +44,24 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
     setIndex(i);
   };
 
+  const Mensage = () => {
+    if (camera !== "" && !date) {
+      return "para a camera " + camera;
+    } else if (!camera.length && !date) {
+      return "no dia solar " + sun;
+    } else {
+      return "no dia" + date;
+    }
+  };
+
   return (
     <StyledListPhotos>
       <motion.ul ref={ref}>
         {photos.map((element, i) => (
           <StyledLi onClick={() => modal(i, element)} loading={element.img_src}>
             <motion.li
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0.5 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
               className="imgLi"
               key={i}
@@ -59,9 +73,7 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         <div ref={observer} className="boxLoading">
           {loading && <AiOutlineLoading3Quarters className="loading" />}
         </div>
-        {!photos.length && !loading && (
-          <h2>{"Não há fotos no dia solar " + sun}</h2>
-        )}
+        {!photos.length && !loading && <h2>{mensage + Mensage()}</h2>}
       </motion.ul>
     </StyledListPhotos>
   );

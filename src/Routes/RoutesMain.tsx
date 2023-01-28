@@ -7,7 +7,7 @@ export const RoutesMain = () => {
   return (
     <Routes>
       <Route
-        path="/rover/:rovers?/:sol?/:cam?/"
+        path="/rover/:rovers?/:sol?/:cam?/:date?"
         element={
           <ProviderContextRover>
             <RoversImgs />
