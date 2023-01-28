@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledInputSun } from "./styled";
 
@@ -14,6 +14,7 @@ export const InputSun = () => {
     rover,
     setCamera,
   } = useContext(ContextRovers);
+  const { sol } = useParams();
 
   const nav = useNavigate();
 
@@ -23,13 +24,16 @@ export const InputSun = () => {
       setPhotos([]);
       setBackup([]);
       setPage(0);
-      nav(`/rover/${rover}/${sun > 0 ? sun - 1 : 0}/`);
+      setSun(Number(sol) - 1);
+      nav(`/rover/${rover}/${Number(sol) > 0 ? Number(sol) - 1 : 0}/`);
     } else if (operator === "sum") {
       setPhotos([]);
       setBackup([]);
       setPage(0);
-      setSun((e) => e + 1);
-      nav(`/rover/${rover ? rover : ""}/${sun >= 0 ? sun + 1 : 0}`);
+      setSun(Number(sol) + 1);
+      nav(
+        `/rover/${rover ? rover : ""}/${Number(sol) >= 0 ? Number(sol) + 1 : 0}`
+      );
     } else {
       setPhotos([]);
       setBackup([]);
