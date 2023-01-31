@@ -1,13 +1,17 @@
 import { useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledDivDay } from "./styled";
 
 export const InputDay = () => {
-  const { setEarthDate, sun, rover, earthDate } = useContext(ContextRovers);
+  const { setEarthDate, sun, rover, earthDate, setPage, setBackup, setPhotos } =
+    useContext(ContextRovers);
   const nav = useNavigate();
 
   const seachDate = (date: string) => {
+    setPage(1);
+    setPhotos([]);
+    setBackup([]);
     setEarthDate(date);
     nav(`/rover/${rover}/${sun}/none/${date}`);
   };

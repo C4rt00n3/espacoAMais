@@ -33,38 +33,68 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
 
   const nav = useNavigate();
 
-  const GetDate = async () => {
-    !camera.length && setLoading(true);
-    setBackup([]);
-    setPhotos([]);
-    try {
-      sun < 0 && setSun(0);
-      const response: IRootObject = await api.get(`/rovers/${rover}/photos?`, {
-        params: {
-          api_key: keyApi,
-          earth_date: earthDate,
-        },
-      });
-      const { data } = response;
-      const { photos } = data;
-      if (photos.length) {
-        setPhotos((e) => [...e, ...photos]);
-        setBackup((e) => [...e, ...photos]);
-      } else if (!photos.length) {
-        setCheckRequest(false);
-      }
-    } catch (error: any) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
+  // const filterCam = (array: IPhotosItem[]) => {
+  //   if (cam === "Todos") {
+  //     nav(`/rover/${rover}/${sol}/none/${date}`);
+  //   } else {
+  //     const camFilter = array.filter((element) => element.camera.name === cam);
+  //     setPhotos(camFilter);
+  //   }
+  // };
+
+  useEffect(() => {
+    if (!earthDate.length) {
+      return;
     }
-  };
+
+    const noRoverCAm = {
+      params: {
+        api_key: keyApi,
+        earth_date: earthDate,
+        page: page,
+      },
+    };
+    const yesRoverCAm = {
+      params: {
+        api_key: keyApi,
+        earth_date: earthDate,
+        page: page,
+        camera: camera,
+      },
+    };
+
+    console.log(camera);
+
+    const GetDate = async () => {
+      !camera.length && setLoading(true);
+      try {
+        const response: IRootObject = await api.get(
+          `/rovers/${rover}/photos?`,
+          camera === "none" ? noRoverCAm : yesRoverCAm
+        );
+        const { data } = response;
+        const { photos } = data;
+
+        if (photos.length) {
+          setPhotos((e) => [...e, ...photos]);
+          setBackup((e) => [...e, ...photos]);
+        } else if (!photos.length) {
+          setCheckRequest(false);
+        }
+      } catch (error: any) {
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    GetDate();
+  }, [camera, earthDate, page, rover]);
 
   useEffect(() => {
     const Get = async () => {
       setLoading(true);
-      if (date?.length) {
-        GetDate();
+      if (date?.length || earthDate.length) {
         return;
       }
       !camera.length && setLoading(true);
@@ -103,7 +133,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     } else {
       Get();
     }
-  }, [rover, sun, page, checkRequest, camera, earthDate]);
+  }, [rover, sun, page, checkRequest, camera, earthDate, date]);
 
   useEffect(() => {
     if (camera === "" || date) {
@@ -130,7 +160,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
         const { data } = response;
         const { photos } = data;
         if (photos.length) {
-          setPhotos(photos);
+          setPhotos((e) => e);
         } else {
           toast.info("Não há photos para essa camera");
         }
@@ -141,7 +171,7 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
       }
     }
     filterCams(camera);
-  }, [camera, backup, rover, sun, rovers, sol, nav]);
+  }, [camera, backup, rover, sun, rovers, sol, nav, date]);
 
   return (
     <ContextRovers.Provider
