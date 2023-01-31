@@ -109,9 +109,11 @@ export const StyledListPhotos = styled.div`
 
     margin: 10px;
 
+    cursor: pointer;
+
     p {
       font-weight: 600;
-      color: var(--Withe);
+      color: #ffff;
     }
     @media (min-width: 699px) {
       min-height: 300px;

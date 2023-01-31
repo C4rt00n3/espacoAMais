@@ -11,6 +11,11 @@ export const StyledSelectDiv = styled.div`
   select {
     height: 40px;
 
+    background-color: var(--WitheFocus);
+    color: var(--Black);
+
+    padding: 0 1.5rem 0 10px;
+
     border: none;
 
     outline: 1px solid var(--Black);

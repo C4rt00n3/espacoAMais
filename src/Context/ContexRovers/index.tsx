@@ -33,15 +33,6 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
 
   const nav = useNavigate();
 
-  // const filterCam = (array: IPhotosItem[]) => {
-  //   if (cam === "Todos") {
-  //     nav(`/rover/${rover}/${sol}/none/${date}`);
-  //   } else {
-  //     const camFilter = array.filter((element) => element.camera.name === cam);
-  //     setPhotos(camFilter);
-  //   }
-  // };
-
   useEffect(() => {
     if (!earthDate.length) {
       return;
@@ -63,14 +54,12 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
       },
     };
 
-    console.log(camera);
-
     const GetDate = async () => {
       !camera.length && setLoading(true);
       try {
         const response: IRootObject = await api.get(
           `/rovers/${rover}/photos?`,
-          camera === "none" ? noRoverCAm : yesRoverCAm
+          camera === "none" || camera === "Todos" ? noRoverCAm : yesRoverCAm
         );
         const { data } = response;
         const { photos } = data;

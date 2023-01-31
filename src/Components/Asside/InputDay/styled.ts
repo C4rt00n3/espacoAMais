@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledDivDay = styled.div`
+interface IStyledDay {
+  themeColor: boolean;
+}
+
+export const StyledDivDay = styled.div<IStyledDay>`
   width: 90%;
 
   display: flex;
@@ -19,5 +23,15 @@ export const StyledDivDay = styled.div`
     outline: 1px solid var(--Black);
 
     font-size: var(--Font20);
+
+    background-color: var(--WitheFocus);
+    color: var(--Black);
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: ${({ themeColor }) =>
+      themeColor
+        ? ` invert(0.8) brightness(100%) sepia(100%) saturate(0) hue-rotate(240deg)`
+        : "none"};
   }
 `;

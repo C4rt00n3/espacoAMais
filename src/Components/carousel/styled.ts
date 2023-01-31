@@ -35,7 +35,7 @@ export const StyledCarousel = styled.div<iImagem>`
       width: 100%;
       height: 100%;
 
-      color: var(--Withe);
+      color: #ffff;
     }
   }
   .usr {

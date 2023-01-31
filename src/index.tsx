@@ -3,20 +3,19 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { StyleGlobal } from "./Styles/StyleGlobal";
-import { ReseteGlobal } from "./Styles/ResteGlobal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ProviderAuthContex } from "./Context/AuthContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <StyleGlobal />
-    <ReseteGlobal />
     <BrowserRouter>
-      <App />
+      <ProviderAuthContex>
+        <App />
+      </ProviderAuthContex>
     </BrowserRouter>
     <ToastContainer
       position="top-right"

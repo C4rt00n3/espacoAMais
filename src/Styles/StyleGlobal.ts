@@ -3,12 +3,17 @@ import { createGlobalStyle } from "styled-components";
 export const StyleGlobal = createGlobalStyle`
 
     body{
-        width: 100vw;
+        max-width: 100vw;
 
         font-family: 'Jaldi', sans-serif;
 
         scrollbar-width: thin;          
         scrollbar-color: blue orange;
+
+        overflow-x: hidden ;
+
+        background-color: var(--Fundo);
+        color: var(--Black);
 
 
 
@@ -45,17 +50,17 @@ export const StyleGlobal = createGlobalStyle`
 
 
     :root{
-        --PrincipalOrange: #FF6600;
-        --PrincipalBlue:#2417B4;
-        --PrincipalRed:#990000;
+        --PrincipalOrange: ${({ theme }) => theme.colors.PrincipalOrange};
+        --PrincipalBlue:${({ theme }) => theme.colors.PrincipalBlue};
+        --PrincipalRed:${({ theme }) => theme.colors.PrincipalRed};
 
+        --Black:${({ theme }) => theme.colors.Black};
+        --Withe: ${({ theme }) => theme.colors.Withe};
+        --WitheFocus:${({ theme }) => theme.colors.WitheFocus};
 
-        --Black: #000;
-        --Withe: #fff;
-        --WitheFocus: #FBFBFB;
-
-        --Grey100: #423F44;
-        --Grey50: #2B2A2A;
+        --Grey100: ${({ theme }) => theme.colors.Grey50};
+        --Grey50:${({ theme }) => theme.colors.Grey50};
+        --Fundo:${({ theme }) => theme.colors.Fundo};
 
 
         --Font12: 0.75rem;

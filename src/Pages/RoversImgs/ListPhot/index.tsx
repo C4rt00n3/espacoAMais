@@ -49,8 +49,10 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
       return "para a camera " + camera;
     } else if (!camera.length && !date) {
       return "no dia solar " + sun;
-    } else if (date && !loading) {
-      return "no dia" + date;
+    } else if ((date && !loading && camera === "none") || "Todos") {
+      return "do dia " + date + " com a camera " + camera;
+    } else if (((date && camera !== "none") || "Todos") && !loading) {
+      return "no dia " + date;
     }
   };
 
@@ -60,8 +62,9 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         {photos.map((element, i) => (
           <StyledLi onClick={() => modal(i, element)} loading={element.img_src}>
             <motion.li
-              initial={{ filter: "blur(10px)" }}
+              initial={{ filter: "blur(5px)" }}
               whileInView={{ filter: "blur(0)" }}
+              whileHover={{ filter: "blur(3px)" }}
               transition={{ repeat: 0, repeatType: "reverse", duration: 0.2 }}
               className="imgLi"
               key={i}

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthContext";
 import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledDivDay } from "./styled";
 
@@ -7,6 +8,7 @@ export const InputDay = () => {
   const { setEarthDate, sun, rover, earthDate, setPage, setBackup, setPhotos } =
     useContext(ContextRovers);
   const nav = useNavigate();
+  const { theme } = useContext(AuthContext);
 
   const seachDate = (date: string) => {
     setPage(1);
@@ -17,7 +19,7 @@ export const InputDay = () => {
   };
 
   return (
-    <StyledDivDay className="inputDay">
+    <StyledDivDay themeColor={theme} className="inputDay">
       <h4 className="subTitleSol">Dia Terrestre</h4>
       <input
         value={earthDate.length && earthDate}

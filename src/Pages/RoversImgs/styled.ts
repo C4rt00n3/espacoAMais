@@ -55,6 +55,8 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
   .rocket {
     width: 30px;
     height: 30px;
+
+    color: #fff;
   }
   .conteiner {
     width: 100%;
@@ -65,6 +67,8 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background-color: var(--Fundo);
 
     @media (min-width: 1100px) {
       width: 90%;
@@ -85,7 +89,7 @@ export const StyledRoversImgs = styled.div<iStyledImg>`
     z-index: 1;
     top: 0;
 
-    background-color: var(--Withe);
+    background-color: var(--Fundo);
   }
   .cardImg {
     width: 100%;
