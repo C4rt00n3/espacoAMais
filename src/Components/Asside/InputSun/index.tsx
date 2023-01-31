@@ -30,7 +30,7 @@ export const InputSun = () => {
       setPhotos([]);
       setBackup([]);
       setPage(0);
-      setSun(Number(sol) + 1);
+      setSun(sol ? Number(sol) + 1 : 1);
       nav(
         `/rover/${rover ? rover : ""}/${Number(sol) >= 0 ? Number(sol) + 1 : 0}`
       );

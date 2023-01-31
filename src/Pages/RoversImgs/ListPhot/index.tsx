@@ -32,11 +32,11 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         }, 500);
       }
     });
-    if (observer.current && photos.length && !date) {
+    if (observer.current && photos.length) {
       intersect.observe(observer.current);
     }
     return () => intersect.disconnect();
-  }, [setPage, loading, checkRequest, photos]);
+  }, [setPage, loading, checkRequest, photos, date]);
 
   const modal = (i: number, element: IPhotosItem) => {
     nav(`/rover/${element.rover.name}/${element.sol}`);
@@ -49,8 +49,10 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
       return "para a camera " + camera;
     } else if (!camera.length && !date) {
       return "no dia solar " + sun;
-    } else if (date && !loading) {
-      return "no dia" + date;
+    } else if ((date && !loading && camera === "none") || "Todos") {
+      return "do dia " + date + " com a camera " + camera;
+    } else if (((date && camera !== "none") || "Todos") && !loading) {
+      return "no dia " + date;
     }
   };
 
@@ -60,9 +62,10 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         {photos.map((element, i) => (
           <StyledLi onClick={() => modal(i, element)} loading={element.img_src}>
             <motion.li
-              initial={{ opacity: 0.5 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              initial={{ filter: "blur(5px)" }}
+              whileInView={{ filter: "blur(0)" }}
+              whileHover={{ filter: "blur(3px)" }}
+              transition={{ repeat: 0, repeatType: "reverse", duration: 0.2 }}
               className="imgLi"
               key={i}
             >

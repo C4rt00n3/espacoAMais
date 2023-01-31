@@ -10,7 +10,7 @@ export const CamsList = () => {
   const { rover, modal, setCamera, setCams, setPhotos, setCheckRequest, sun } =
     useContext(ContextRovers);
 
-  const { sol, rovers } = useParams();
+  const { sol, rovers, date } = useParams();
   const nav = useNavigate();
 
   const { camera } = useContext(ContextRovers);
@@ -108,14 +108,14 @@ export const CamsList = () => {
 
     if (element.name !== "Todos") {
       setCheckRequest(false);
-      nav(`/rover/${rovers}/${sol}/${element.sigla}`);
+      nav(`/rover/${rovers}/${sol}/${element.sigla}/${date}`);
     } else {
       setCheckRequest(true);
     }
     setPhotos([]);
     setCams(newUnique);
     setCamera(element.sigla);
-    nav(`/rover/${rover}/${sun}/${element.sigla}`);
+    nav(`/rover/${rover}/${sun}/${element.sigla}/${date}`);
   }
 
   useEffect(() => {
@@ -143,7 +143,7 @@ export const CamsList = () => {
               width={element.name.length % 2 === 0 ? "120px" : "100px"}
               key={i}
             >
-              <button onClick={(e) => selectCam(element)}>
+              <button onClick={() => selectCam(element)}>
                 <motion.li
                   className={element.list ? "backgroundBlue" : ""}
                   key={i}

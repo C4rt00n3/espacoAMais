@@ -1,4 +1,12 @@
+import { ThemeProvider } from "styled-components";
 import { RoutesMain } from "./Routes/RoutesMain";
+import { ReseteGlobal } from "./Styles/ResteGlobal";
+import { StyleGlobal } from "./Styles/StyleGlobal";
+import light from "../src/Styles/theme/light";
+import dark from "../src/Styles/theme/dark";
+
+import { useContext } from "react";
+import { AuthContext } from "./Context/AuthContext";
 interface iCamsList {
   name: string;
   list: boolean;
@@ -58,11 +66,18 @@ export const unique: iCamsList[] = [
 ];
 
 function App() {
+  const { theme } = useContext(AuthContext);
   return (
-    <div className="App">
-      <RoutesMain />
-    </div>
+    <ThemeProvider theme={!theme ? light : dark}>
+      <div className="App">
+        <StyleGlobal />
+        <ReseteGlobal />
+        <RoutesMain />
+      </div>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+//teste
