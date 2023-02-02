@@ -9,7 +9,7 @@ import {
   IRootObject,
   keyApi,
 } from "./types";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const ContextRovers = createContext({} as iContextRover);
 
@@ -31,12 +31,13 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   const [index, setIndex] = useState(0);
   const [earthDate, setEarthDate] = useState(date ? date : "");
 
-  const nav = useNavigate();
+  const newPhotos = photos;
 
   useEffect(() => {
     if (!earthDate.length) {
       return;
     }
+    console.log("date");
 
     const noRoverCAm = {
       params: {
@@ -55,11 +56,11 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     };
 
     const GetDate = async () => {
-      !camera.length && setLoading(true);
       try {
+        setLoading((e) => (e ? false : true));
         const response: IRootObject = await api.get(
           `/rovers/${rover}/photos?`,
-          camera === "none" || camera === "Todos" ? noRoverCAm : yesRoverCAm
+          camera === "" || "Todos" ? noRoverCAm : yesRoverCAm
         );
         const { data } = response;
         const { photos } = data;
@@ -68,6 +69,9 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
           setPhotos((e) => [...e, ...photos]);
           setBackup((e) => [...e, ...photos]);
         } else if (!photos.length) {
+          if (!newPhotos.length) {
+            toast.info("Não encontramos fotos");
+          }
           setCheckRequest(false);
         }
       } catch (error: any) {
@@ -81,86 +85,57 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   }, [camera, earthDate, page, rover]);
 
   useEffect(() => {
-    const Get = async () => {
-      setLoading(true);
-      if (date?.length || earthDate.length) {
-        return;
-      }
-      !camera.length && setLoading(true);
-      if (!camera.length) {
-        try {
-          sun < 0 && setSun(0);
-          const response: IRootObject = await api.get(
-            `/rovers/${rover}/photos?`,
-            {
-              params: {
-                sol: sun,
-                api_key: keyApi,
-                page: Number(page),
-              },
-            }
-          );
-          const { data } = response;
-          const { photos } = data;
-          if (photos.length) {
-            setPhotos((e) => [...e, ...photos]);
-            setBackup((e) => [...e, ...photos]);
-            setEarthDate("");
-          } else if (!photos.length) {
-            setCheckRequest(false);
-          }
-        } catch (error: any) {
-          toast.error(error.message);
-        } finally {
-          setLoading(false);
-        }
-      }
+    const requestCam = {
+      params: {
+        sol: sun,
+        api_key: keyApi,
+        camera: camera,
+        page: page,
+      },
+    };
+    const requestPage = {
+      params: {
+        sol: sun,
+        api_key: keyApi,
+        page: Number(page),
+      },
     };
 
-    if (!checkRequest) {
+    if (date?.length || earthDate.length) {
       return;
-    } else {
-      Get();
     }
-  }, [rover, sun, page, checkRequest, camera, earthDate, date]);
+    console.log(camera);
 
-  useEffect(() => {
-    if (camera === "" || date) {
-      return;
-    }
-    async function filterCams(name: string) {
-      if (name === "Todos") {
-        setCamera("");
-        nav(`/rover/${rovers}/${sol}`);
-        return;
-      }
+    const Get = async () => {
+      setLoading(true);
+
       try {
-        setLoading(true);
         const response: IRootObject = await api.get(
           `/rovers/${rover}/photos?`,
-          {
-            params: {
-              sol: sun,
-              api_key: keyApi,
-              camera: name,
-            },
-          }
+          camera.length ? requestCam : requestPage
         );
+
         const { data } = response;
         const { photos } = data;
         if (photos.length) {
-          setPhotos((e) => e);
-        } else {
-          toast.info("Não há photos para essa camera");
+          setPhotos((e) => [...e, ...photos]);
+          setBackup((e) => [...e, ...photos]);
+          setEarthDate("");
+        } else if (!photos.length) {
+          if (!newPhotos.length) {
+            toast.info("Não encontramos nada!");
+          }
+          setCheckRequest(false);
         }
       } catch (error: any) {
         toast.error(error.message);
       } finally {
         setLoading(false);
       }
-    }
-    filterCams(camera);
-  }, [camera, backup, rover, sun, rovers, sol, nav, date]);
+    };
+
+    Get();
+  }, [rover, sun, page, checkRequest, camera, earthDate, date]);
 
   return (
     <ContextRovers.Provider

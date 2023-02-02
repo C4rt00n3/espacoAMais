@@ -13,6 +13,7 @@ export const InputSun = () => {
     setBackup,
     rover,
     setCamera,
+    setEarthDate,
   } = useContext(ContextRovers);
   const { sol } = useParams();
 
@@ -21,16 +22,20 @@ export const InputSun = () => {
   function Sun(operator: string) {
     setCheckRequest(true);
     if (operator === "sub") {
+      if (sun === 0) {
+        return;
+      }
       setPhotos([]);
       setBackup([]);
       setPage(0);
       setSun(Number(sol) - 1);
-      nav(`/rover/${rover}/${Number(sol) > 0 ? Number(sol) - 1 : 0}/`);
+      nav(`/rover/${rover}/${sun > 0 ? sun - 1 : 0}`);
     } else if (operator === "sum") {
       setPhotos([]);
       setBackup([]);
       setPage(0);
-      setSun(sol ? Number(sol) + 1 : 1);
+      setEarthDate("");
+      setSun((e) => e + 1);
       nav(
         `/rover/${rover ? rover : ""}/${Number(sol) >= 0 ? Number(sol) + 1 : 0}`
       );

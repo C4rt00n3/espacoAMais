@@ -114,8 +114,12 @@ export const CamsList = () => {
     }
     setPhotos([]);
     setCams(newUnique);
-    setCamera(element.sigla);
-    nav(`/rover/${rover}/${sun}/${element.sigla}/${date}`);
+    setCamera(element.sigla === "Todos" ? "" : element.sigla);
+    nav(
+      `/rover/${rover}/${sun < 0 ? 0 : sun}${
+        element.sigla !== "Todos" ? "/" + element.sigla : ""
+      }${date ? "/" + date : ""}`
+    );
   }
 
   useEffect(() => {
@@ -148,7 +152,9 @@ export const CamsList = () => {
                   className={element.list ? "backgroundBlue" : ""}
                   key={i}
                 >
-                  <p>{element.name}</p>
+                  <p className={element.list ? "text_cam" : "text_cam_simples"}>
+                    {element.name}
+                  </p>
                 </motion.li>
               </button>
             </StyledLi>

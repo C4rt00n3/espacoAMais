@@ -7,10 +7,21 @@ interface iSTyledCams {
 export const StyledCamsList = styled.div`
   .backgroundBlue {
     background: none;
-    color: var(--PrincipalBlue);
+
     border: 2px solid var(--PrincipalBlue);
 
     font-weight: 600;
+
+    p {
+      color: var(--Black);
+    }
+  }
+  .text_cam {
+    color: none;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   button {
     width: min-content;
@@ -35,12 +46,12 @@ export const StyledCamsList = styled.div`
       gap: 10px;
     }
 
-    p {
+    .text_cam_simples {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
 
-      color: var(--Black);
+      color: #ffff;
     }
   }
 `;

@@ -15,7 +15,7 @@ export const SelectRover = () => {
     setPhotos([]);
     setCheckRequest(true);
     setRover(name);
-    nav(`/rover/${name}/${sun - 1}`);
+    nav(`/rover/${name}/${sun}`);
   }
 
   return (

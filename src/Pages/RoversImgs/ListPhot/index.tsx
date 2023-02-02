@@ -28,7 +28,7 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
     const intersect = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting) && checkRequest) {
         setTimeout(() => {
-          setPage((pageInsedeState) => pageInsedeState + 1);
+          setPage((e) => e + 1);
         }, 500);
       }
     });
@@ -64,7 +64,7 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
             <motion.li
               initial={{ filter: "blur(5px)" }}
               whileInView={{ filter: "blur(0)" }}
-              whileHover={{ filter: "blur(3px)" }}
+              whileHover={{ opacity: 0.7 }}
               transition={{ repeat: 0, repeatType: "reverse", duration: 0.2 }}
               className="imgLi"
               key={i}
