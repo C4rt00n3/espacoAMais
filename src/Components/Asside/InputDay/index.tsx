@@ -5,8 +5,17 @@ import { ContextRovers } from "../../../Context/ContexRovers";
 import { StyledDivDay } from "./styled";
 
 export const InputDay = () => {
-  const { setEarthDate, sun, rover, earthDate, setPage, setBackup, setPhotos } =
-    useContext(ContextRovers);
+  const {
+    setEarthDate,
+    sun,
+    rover,
+    camera,
+    earthDate,
+    setPage,
+    setBackup,
+    setPhotos,
+    setSun,
+  } = useContext(ContextRovers);
   const nav = useNavigate();
   const { theme } = useContext(AuthContext);
 
@@ -15,7 +24,8 @@ export const InputDay = () => {
     setPhotos([]);
     setBackup([]);
     setEarthDate(date);
-    nav(`/rover/${rover}/${sun}/none/${date}`);
+    setSun(0);
+    nav(`/rover/${rover}/${sun}/${camera.length ? camera : "Todos"}/${date}`);
   };
 
   return (

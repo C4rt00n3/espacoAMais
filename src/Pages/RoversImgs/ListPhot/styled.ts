@@ -10,6 +10,10 @@ export const StyledListPhotos = styled.div`
   flex-direction: column;
   align-items: center;
 
+  h2 {
+    position: absolute;
+  }
+
   ul {
     width: 90%;
 

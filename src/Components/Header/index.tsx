@@ -17,7 +17,7 @@ export const Header = () => {
           src={theme ? LogoDark : Logo}
           alt="Espaço a Mais"
         />
-        <button onClick={() => setModal(true)}>
+        <button className="buttonMenu" onClick={() => setModal(true)}>
           <AiOutlineMenu className="menu" />
         </button>
       </div>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  width: 100%;
+  width: 100vw;
   height: 60px;
 
   display: flex;
@@ -25,7 +25,7 @@ export const StyledHeader = styled.header`
     align-items: center;
   }
 
-  button {
+  .buttonMenu {
     border: none;
     background: none;
 
