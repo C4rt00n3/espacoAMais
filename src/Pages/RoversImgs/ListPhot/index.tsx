@@ -32,7 +32,7 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         }, 500);
       }
     });
-    if (observer.current && photos.length) {
+    if (observer.current && photos.length && !loading) {
       intersect.observe(observer.current);
     }
     return () => intersect.disconnect();
