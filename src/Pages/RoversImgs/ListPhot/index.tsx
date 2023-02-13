@@ -62,9 +62,6 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
         {photos.map((element, i) => (
           <StyledLi onClick={() => modal(i, element)} loading={element.img_src}>
             <motion.li
-              initial={{ filter: "blur(5px)" }}
-              whileInView={{ filter: "blur(0)" }}
-              whileHover={{ opacity: 0.7 }}
               transition={{ repeat: 0, repeatType: "reverse", duration: 0.2 }}
               className="imgLi"
               key={i}
