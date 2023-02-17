@@ -37,7 +37,6 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     if (!earthDate.length) {
       return;
     }
-    console.log("date");
 
     const noRoverCAm = {
       params: {
@@ -104,7 +103,6 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
     if (date?.length || earthDate.length) {
       return;
     }
-    console.log(camera);
 
     const Get = async () => {
       setLoading(true);
