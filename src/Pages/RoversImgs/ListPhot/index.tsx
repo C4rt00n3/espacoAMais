@@ -60,11 +60,14 @@ export const ListPhotos = ({ setModalImg, setIndex }: iLIstPhotos) => {
     <StyledListPhotos>
       <motion.ul ref={ref}>
         {photos.map((element, i) => (
-          <StyledLi onClick={() => modal(i, element)} loading={element.img_src}>
+          <StyledLi
+            key={i}
+            onClick={() => modal(i, element)}
+            loading={element.img_src}
+          >
             <motion.li
               transition={{ repeat: 0, repeatType: "reverse", duration: 0.2 }}
               className="imgLi"
-              key={i}
             >
               <p>{element.camera?.full_name}</p>
             </motion.li>

@@ -31,8 +31,6 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
   const [index, setIndex] = useState(0);
   const [earthDate, setEarthDate] = useState(date ? date : "");
 
-  const newPhotos = photos;
-
   useEffect(() => {
     if (!earthDate.length) {
       return;
@@ -61,16 +59,15 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
           `/rovers/${rover}/photos?`,
           camera === "" || "Todos" ? noRoverCAm : yesRoverCAm
         );
+
         const { data } = response;
         const { photos } = data;
 
         if (photos.length) {
           setPhotos((e) => [...e, ...photos]);
           setBackup((e) => [...e, ...photos]);
-        } else if (!photos.length) {
-          if (!newPhotos.length) {
-            toast.info("Não encontramos fotos");
-          }
+        }
+        if (!photos.length) {
           setCheckRequest(false);
         }
       } catch (error: any) {
@@ -120,9 +117,6 @@ export const ProviderContextRover = ({ children }: iAuthContext) => {
           setBackup((e) => [...e, ...photos]);
           setEarthDate("");
         } else if (!photos.length) {
-          if (!newPhotos.length) {
-            toast.info("Não encontramos nada!");
-          }
           setCheckRequest(false);
         }
       } catch (error: any) {
